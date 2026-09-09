@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import type { EmblaCarouselType } from 'embla-carousel'
 import quoteIcon from '../assets/ayala-accounting-assets/icons/quote.svg?raw'
 import arrowLeft from '../assets/ayala-accounting-assets/icons/arrow-left.svg?raw'
 import arrowRight from '../assets/ayala-accounting-assets/icons/arrow-right.svg?raw'
@@ -11,25 +10,27 @@ import testimonials from '../data/testimonials.json'
 
 export function TestimonialsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [canScrollPrev, setCanScrollPrev] = useState(false)
-  const [canScrollNext, setCanScrollNext] = useState(false)
+  // Bumped whenever embla's internal state changes, to force a re-render that
+  // re-reads the derived values below straight from emblaApi.
+  const [, forceUpdate] = useState(0)
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
   const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi])
 
-  const onSelect = useCallback((api: EmblaCarouselType) => {
-    setSelectedIndex(api.selectedScrollSnap())
-    setCanScrollPrev(api.canScrollPrev())
-    setCanScrollNext(api.canScrollNext())
-  }, [])
-
   useEffect(() => {
     if (!emblaApi) return
-    onSelect(emblaApi)
-    emblaApi.on('select', onSelect).on('reInit', onSelect)
-  }, [emblaApi, onSelect])
+    const rerender = () => forceUpdate((n) => n + 1)
+    emblaApi.on('select', rerender).on('reInit', rerender)
+    return () => {
+      emblaApi.off('select', rerender).off('reInit', rerender)
+    }
+  }, [emblaApi])
+
+  const selectedIndex = emblaApi?.selectedScrollSnap() ?? 0
+  const canScrollPrev = emblaApi?.canScrollPrev() ?? false
+  const canScrollNext = emblaApi?.canScrollNext() ?? false
+  const hasMultipleTestimonials = testimonials.length > 1
 
   return (
     <section id="testimonials" className="relative overflow-hidden bg-blush">
@@ -54,15 +55,17 @@ export function TestimonialsCarousel() {
         </h2>
 
         <div className="mt-10 flex items-center justify-center gap-4 md:gap-6">
-          <button
-            type="button"
-            aria-label="Previous testimonial"
-            onClick={scrollPrev}
-            disabled={!canScrollPrev}
-            className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0 disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <Icon svg={arrowLeft} className="h-4 w-4" />
-          </button>
+          {hasMultipleTestimonials && (
+            <button
+              type="button"
+              aria-label="Previous testimonial"
+              onClick={scrollPrev}
+              disabled={!canScrollPrev}
+              className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <Icon svg={arrowLeft} className="h-4 w-4" />
+            </button>
+          )}
 
           <div className="overflow-hidden w-full" ref={emblaRef}>
             <div className="flex">
@@ -85,18 +88,20 @@ export function TestimonialsCarousel() {
             </div>
           </div>
 
-          <button
-            type="button"
-            aria-label="Next testimonial"
-            onClick={scrollNext}
-            disabled={!canScrollNext}
-            className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0 disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <Icon svg={arrowRight} className="h-4 w-4" />
-          </button>
+          {hasMultipleTestimonials && (
+            <button
+              type="button"
+              aria-label="Next testimonial"
+              onClick={scrollNext}
+              disabled={!canScrollNext}
+              className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <Icon svg={arrowRight} className="h-4 w-4" />
+            </button>
+          )}
         </div>
 
-        {testimonials.length > 1 && (
+        {hasMultipleTestimonials && (
           <div className="mt-8 flex items-center justify-center gap-2">
             {testimonials.map((testimonial, index) => (
               <button

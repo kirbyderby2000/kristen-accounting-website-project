@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import logo from './assets/ayala-accounting-assets/images/ayala-logo-reference.png'
+import footerLogo from './assets/ayala-accounting-assets/images/logo-reference-horizontal-layout.png'
 import heroImage from './assets/ayala-accounting-assets/images/hero-accounting-desk.png'
-import footerLeaf from './assets/footer-leaf.png'
-import footerBackground from './assets/footer-background.jpg'
+import footerLeaf from './assets/footer-leaf-transparent.png'
 import iconBookkeeping from './assets/ayala-accounting-assets/icons/bookkeeping.svg?raw'
 import iconReporting from './assets/ayala-accounting-assets/icons/financial-reporting.svg?raw'
 import iconTax from './assets/ayala-accounting-assets/icons/tax-preparation.svg?raw'
@@ -307,18 +307,27 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer
-        className="relative text-cream bg-footer bg-cover bg-center"
-        style={{ backgroundImage: `url(${footerBackground})` }}
-      >
-        <div className="bg-footer/90">
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16">
+      <footer className="relative overflow-hidden text-cream bg-footer">
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-[10%] w-[26%] md:w-[22%] aspect-[1740/904] bg-cream opacity-[0.16] hidden md:block"
+            style={{
+              maskImage: `url(${footerLeaf})`,
+              maskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center',
+              WebkitMaskImage: `url(${footerLeaf})`,
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+            }}
+          />
+
+          <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16">
             <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-10">
               <div>
-                <span className="font-heading italic text-xl text-cream">Ayala</span>
-                <span className="block text-xs font-semibold tracking-[0.2em] text-cream/60 uppercase mt-1">
-                  Accounting Co. —
-                </span>
+                <img src={footerLogo} alt="Ayala Bookkeeping Co." className="h-10 w-auto" />
                 <p className="font-heading italic text-lg text-cream/80 mt-6 leading-snug">
                   Clear Numbers.
                   <br />
@@ -327,7 +336,6 @@ function App() {
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold text-cream mb-4">Home</h3>
                 <ul className="space-y-3">
                   {footerNavLinks.map((link) => (
                     <li key={link}>
@@ -346,25 +354,19 @@ function App() {
                 <h3 className="text-sm font-semibold text-cream mb-4">Contact</h3>
                 <ul className="space-y-3 text-sm text-cream/70">
                   <li className="flex items-center gap-2">
-                    <span aria-hidden>☎</span> (818) 555-0123
+                    <Icon svg={phoneIcon} className="h-3.5 w-3.5 text-accent" /> (818) 555-0123
                   </li>
                   <li className="flex items-center gap-2">
-                    <span aria-hidden>✉</span> hello@ayalaaccounting.co
+                    <Icon svg={mailIcon} className="h-3.5 w-3.5 text-accent" /> hello@ayalaaccounting.co
                   </li>
                   <li className="flex items-center gap-2">
-                    <span aria-hidden>📍</span> Los Angeles, CA
+                    <Icon svg={locationIcon} className="h-3.5 w-3.5 text-accent" /> Los Angeles, CA
                   </li>
                 </ul>
               </div>
 
-              <div className="flex flex-col items-start md:items-end justify-between">
-                <img
-                  src={footerLeaf}
-                  alt=""
-                  aria-hidden
-                  className="h-16 w-auto opacity-90 mix-blend-multiply"
-                />
-                <span className="text-[11px] font-semibold tracking-[0.25em] text-cream/50 uppercase mt-6 md:mt-0">
+              <div className="flex items-center md:justify-end">
+                <span className="text-[11px] font-semibold tracking-[0.25em] text-cream/50 uppercase">
                   People / Plans / Progress
                 </span>
               </div>
