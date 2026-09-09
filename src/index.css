@@ -1,30 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #f7f1e7;
-  --color-cream-alt: #f2e9d8;
-  --color-ink: #2b2420;
-  --color-body: #6b6058;
-  --color-accent: #b9754a;
-  --color-accent-dark: #9c5f39;
-  --color-accent-soft: #f1e0d0;
+  --color-cream: #fbf6f1;
+  --color-cream-alt: #f6ece0;
+  --color-ink: #3b3330;
+  --color-heading: #7b3f2e;
+  --color-body: #6e6259;
+  --color-accent: #be785e;
+  --color-accent-dark: #a3644a;
+  --color-accent-soft: #f1dfcf;
+  --color-blush: #f5e4db;
   --color-footer: #2c332c;
-  --color-hairline: #e6ddcc;
+  --color-hairline: #ede1d2;
 
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Playfair Display', Georgia, serif;
 }
 
 :root {
-  --cream: #f7f1e7;
-  --cream-alt: #f2e9d8;
-  --ink: #2b2420;
-  --text: #6b6058;
-  --accent: #b9754a;
-  --accent-dark: #9c5f39;
-  --accent-soft: #f1e0d0;
+  --cream: #fbf6f1;
+  --cream-alt: #f6ece0;
+  --ink: #3b3330;
+  --heading: #7b3f2e;
+  --text: #6e6259;
+  --accent: #be785e;
+  --accent-dark: #a3644a;
+  --accent-soft: #f1dfcf;
   --footer-bg: #2c332c;
-  --border: #e6ddcc;
+  --border: #ede1d2;
 
   --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: 'Playfair Display', Georgia, serif;

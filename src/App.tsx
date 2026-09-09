@@ -1,26 +1,21 @@
 import { useState } from 'react'
-import logo from './assets/logo.png'
-import heroImage from './assets/hero-image.jpg'
-import laPhoto from './assets/la-photo.jpg'
-import leafAccent from './assets/leaf-accent.png'
+import logo from './assets/ayala-accounting-assets/images/ayala-logo-reference.png'
+import heroImage from './assets/ayala-accounting-assets/images/hero-accounting-desk.png'
 import footerLeaf from './assets/footer-leaf.png'
-import quoteIcon from './assets/quote-icon.png'
 import footerBackground from './assets/footer-background.jpg'
-import iconBookkeeping from './assets/icon-bookkeeping.png'
-import iconReporting from './assets/icon-reporting.png'
-import iconTax from './assets/icon-tax.png'
-import iconBusiness from './assets/icon-business.png'
-import iconPayroll from './assets/icon-payroll.png'
-import iconAdvisory from './assets/icon-advisory.png'
+import iconBookkeeping from './assets/ayala-accounting-assets/icons/bookkeeping.svg?raw'
+import iconReporting from './assets/ayala-accounting-assets/icons/financial-reporting.svg?raw'
+import iconTax from './assets/ayala-accounting-assets/icons/tax-preparation.svg?raw'
+import iconBusiness from './assets/ayala-accounting-assets/icons/small-business.svg?raw'
+import quoteIcon from './assets/ayala-accounting-assets/icons/quote.svg?raw'
+import arrowLeft from './assets/ayala-accounting-assets/icons/arrow-left.svg?raw'
+import arrowRight from './assets/ayala-accounting-assets/icons/arrow-right.svg?raw'
+import botanicalLeaf from './assets/ayala-accounting-assets/icons/botanical-leaf.svg?raw'
+import mailIcon from './assets/ayala-accounting-assets/icons/mail.svg?raw'
+import phoneIcon from './assets/ayala-accounting-assets/icons/phone.svg?raw'
+import locationIcon from './assets/ayala-accounting-assets/icons/location.svg?raw'
 
-const navLinks = ['Home', 'Services', 'About', 'Testimonials']
-
-const stats = [
-  { value: '2018', label: 'Established' },
-  { value: '8+', label: 'Years of Experience' },
-  { value: '300+', label: 'Clients Served' },
-  { value: '1:1', label: 'Personalized Support' },
-]
+const navLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
 
 const services = [
   {
@@ -35,31 +30,48 @@ const services = [
   },
   {
     icon: iconTax,
-    title: 'Tax Preparation & Planning',
-    description: 'Organized records and proactive strategies for a smoother tax season.',
+    title: 'Tax Preparation Support',
+    description: 'Organized records and professional support for a smoother tax season.',
   },
   {
     icon: iconBusiness,
-    title: 'Business Formation',
-    description: 'Guidance for starting and growing your business with confidence.',
-  },
-  {
-    icon: iconPayroll,
-    title: 'Payroll Services',
-    description: 'Reliable, compliant payroll support tailored to your needs.',
-  },
-  {
-    icon: iconAdvisory,
-    title: 'Small Business Advisory',
-    description: 'Practical solutions for long-term growth and success.',
+    title: 'Small Business Solutions',
+    description: 'Customized services for entrepreneurs, freelancers, and growing businesses.',
   },
 ]
 
 const footerNavLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
 
-function Eyebrow({ children, className = '' }: { children: string; className?: string }) {
+function Icon({ svg, className }: { svg: string; className?: string }) {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <span
+      aria-hidden
+      className={`inline-flex shrink-0 [&>svg]:h-full [&>svg]:w-auto ${className ?? ''}`}
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  )
+}
+
+function Eyebrow({
+  children,
+  align = 'left',
+}: {
+  children: string
+  align?: 'left' | 'center'
+}) {
+  if (align === 'center') {
+    return (
+      <div className="flex items-center justify-center gap-3">
+        <span className="h-px w-8 bg-accent/50" />
+        <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+          {children}
+        </span>
+        <span className="h-px w-8 bg-accent/50" />
+      </div>
+    )
+  }
+  return (
+    <div className="flex items-center gap-3">
       <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
         {children}
       </span>
@@ -70,6 +82,7 @@ function Eyebrow({ children, className = '' }: { children: string; className?: s
 
 function App() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -87,11 +100,7 @@ function App() {
       <header className="border-b border-hairline">
         <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-4 flex items-center justify-between gap-6">
           <a href="#home" className="flex items-center gap-3 shrink-0">
-            <img
-              src={logo}
-              alt="Ayala Accounting Co."
-              className="h-10 md:h-12 w-auto mix-blend-multiply"
-            />
+            <img src={logo} alt="Ayala Bookkeeping Co." className="h-9 md:h-11 w-auto" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -117,112 +126,98 @@ function App() {
             </a>
             <button
               type="button"
-              aria-label="Open menu"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMobileMenuOpen((open) => !open)}
               className="lg:hidden flex flex-col gap-1.5 p-2"
             >
-              <span className="block h-0.5 w-6 bg-ink" />
-              <span className="block h-0.5 w-6 bg-ink" />
-              <span className="block h-0.5 w-6 bg-ink" />
+              <span
+                className={`block h-0.5 w-6 bg-ink transition-transform ${
+                  mobileMenuOpen ? 'translate-y-2 rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-6 bg-ink transition-opacity ${
+                  mobileMenuOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-6 bg-ink transition-transform ${
+                  mobileMenuOpen ? '-translate-y-2 -rotate-45' : ''
+                }`}
+              />
             </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <nav id="mobile-menu" className="lg:hidden border-t border-hairline bg-cream">
+            <div className="px-6 md:px-10 py-4 flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm font-medium text-ink hover:text-accent transition-colors"
+                >
+                  {link}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-5 py-2.5 mt-2"
+              >
+                Get in Touch <span aria-hidden>→</span>
+              </a>
+            </div>
+          </nav>
+        )}
       </header>
 
       <main>
         {/* Hero */}
-        <section id="home" className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-12 md:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div>
-              <Eyebrow>Accounting & Advisory</Eyebrow>
-              <h1 className="font-heading text-ink text-[2.75rem] sm:text-[3.25rem] lg:text-[3.5rem] leading-[1.05] tracking-tight mt-6">
-                Expert Accounting for a{' '}
-                <em className="text-accent italic">Brighter</em> Tomorrow.
+        <section id="home" className="relative overflow-hidden">
+          <div className="absolute inset-y-0 right-0 w-full sm:w-[75%] lg:w-[60%]">
+            <img
+              src={heroImage}
+              alt="A mug reading Good Numbers, Brighter Days beside a stack of books on accounting, small business, and financial clarity"
+              className="h-full w-full object-cover object-right"
+            />
+          </div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#fbf6f1_0%,#fbf6f1_38%,rgba(251,246,241,0)_58%)]" />
+          <div className="relative flex min-h-[400px] items-center pl-6 py-16 sm:min-h-[460px] md:pl-10 md:py-20 lg:min-h-[480px] lg:pl-16 xl:min-h-[560px]">
+            <div className="max-w-xl">
+              <div className="space-y-1">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+                    Clear Numbers.
+                  </span>
+                  <span className="h-px w-10 bg-accent/50" />
+                </div>
+                <span className="block text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+                  A Brighter Tomorrow.
+                </span>
+              </div>
+              <h1 className="font-heading text-heading text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] leading-[1.05] tracking-tight mt-6">
+                Bookkeeping
+                <br />
+                for a Stronger
+                <br />
+                Business
               </h1>
               <p className="mt-6 text-base leading-relaxed max-w-md">
-                We help individuals and businesses stay organized, compliant, and confident
-                with their finances — so you can focus on what matters most.
+                We help small businesses and individuals stay organized, compliant, and
+                confident with their finances — so you can focus on what matters most.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-6">
+              <div className="mt-8">
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
                 >
-                  Schedule a Consultation <span aria-hidden>→</span>
+                  Get in Touch <span aria-hidden>→</span>
                 </a>
-                <a
-                  href="#services"
-                  className="text-sm font-semibold text-ink border-b border-ink/40 hover:border-ink pb-1"
-                >
-                  Our Services
-                </a>
-              </div>
-            </div>
-            <div>
-              <img
-                src={heroImage}
-                alt="A mug reading Good Numbers, Brighter Days beside a stack of books on planning, tax strategy, business growth, and peace of mind"
-                className="w-full h-auto rounded-2xl object-cover shadow-[var(--shadow,0_20px_40px_-15px_rgba(43,36,32,0.25))]"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Stats bar */}
-        <section className="border-y border-hairline">
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-4 flex justify-end">
-            <span className="text-[11px] font-semibold tracking-[0.25em] text-body/60 uppercase">
-              People / Plans / Progress
-            </span>
-          </div>
-          <div className="border-t border-hairline">
-            <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-8 grid grid-cols-2 md:grid-cols-4">
-              {stats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className={`px-4 py-4 md:py-0 ${
-                    i % 2 === 0 ? 'border-r' : ''
-                  } md:border-r md:last:border-r-0 border-hairline`}
-                >
-                  <div className="font-heading text-ink text-3xl md:text-4xl">{stat.value}</div>
-                  <div className="mt-1 text-xs font-semibold tracking-[0.15em] text-body/70 uppercase">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* From our desk to yours */}
-        <section className="relative overflow-hidden">
-          <img
-            src={leafAccent}
-            alt=""
-            aria-hidden
-            className="pointer-events-none select-none absolute -right-10 top-0 h-full max-h-[420px] w-auto opacity-30 mix-blend-multiply hidden md:block"
-          />
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20 relative">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-              <div>
-                <Eyebrow>A Better Way Forward</Eyebrow>
-                <h2 className="font-heading text-ink text-2xl md:text-[1.75rem] mt-4">
-                  From our desk to yours.
-                </h2>
-                <p className="mt-2 text-base leading-relaxed max-w-sm">
-                  Accurate financials. Practical advice. A long-term partner you can count on.
-                </p>
-              </div>
-              <div className="lg:border-l border-hairline lg:pl-16">
-                <p className="font-heading italic text-ink text-xl md:text-2xl leading-snug">
-                  “A well-kept ledger is a form of quiet confidence.”
-                </p>
-                <p className="mt-4 text-base leading-relaxed max-w-md">
-                  We believe good accounting does more than keep you compliant — it gives you
-                  clarity, freedom, and the confidence to make what's next possible.
-                </p>
-                <p className="mt-4 text-sm font-semibold text-body/70">
-                  — The Ayala Accounting Co. Team
-                </p>
               </div>
             </div>
           </div>
@@ -230,137 +225,86 @@ function App() {
 
         {/* Services */}
         <section id="services" className="bg-cream-alt">
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <div>
-                <Eyebrow>Our Services</Eyebrow>
-                <h2 className="font-heading text-ink text-2xl md:text-[1.75rem] mt-4 max-w-xl">
-                  Comprehensive Support for Individuals & Businesses.
-                </h2>
-              </div>
-              <a
-                href="#services"
-                className="text-sm font-semibold text-accent hover:text-accent-dark shrink-0"
-              >
-                View All Services <span aria-hidden>→</span>
-              </a>
-            </div>
+          <div className="mx-auto max-w-5xl px-6 md:px-10 lg:px-16 py-16 md:py-20 text-center">
+            <Eyebrow align="center">Our Services</Eyebrow>
+            <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
+              Support at Every Step
+            </h2>
+            <p className="mt-4 text-base leading-relaxed max-w-xl mx-auto">
+              Reliable bookkeeping and accounting services tailored to your needs.
+            </p>
 
-            <div className="mt-10 border-t border-hairline">
-              {services.map((service) => (
-                <a
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+              {services.map((service, index) => (
+                <div
                   key={service.title}
-                  href="#contact"
-                  className="group flex items-center gap-5 border-b border-hairline py-5 hover:bg-cream/60 transition-colors"
+                  className={`flex flex-col items-center text-center lg:px-4 ${
+                    index > 0 ? 'lg:border-l lg:border-hairline' : ''
+                  }`}
                 >
-                  <span className="shrink-0 h-12 w-12 rounded-full bg-accent-soft flex items-center justify-center">
-                    <img
-                      src={service.icon}
-                      alt=""
-                      aria-hidden
-                      className="h-6 w-6 mix-blend-multiply"
-                    />
+                  <span className="h-16 w-16 rounded-full bg-accent-soft text-accent flex items-center justify-center mb-5">
+                    <Icon svg={service.icon} className="h-7 w-7" />
                   </span>
-                  <span className="w-full sm:w-56 shrink-0 font-heading text-ink text-lg text-left">
-                    {service.title}
-                  </span>
-                  <span className="hidden sm:block flex-1 text-sm text-body text-left">
+                  <h3 className="font-heading text-heading text-lg">{service.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed max-w-[240px]">
                     {service.description}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="ml-auto text-accent group-hover:translate-x-1 transition-transform"
-                  >
-                    →
-                  </span>
-                </a>
+                  </p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Local expertise */}
-        <section id="about" className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <img
-              src={laPhoto}
-              alt="Palm trees overlooking the Los Angeles skyline at sunset"
-              className="w-full h-auto rounded-2xl object-cover"
-            />
-            <div>
-              <Eyebrow>Rooted in Los Angeles</Eyebrow>
-              <h2 className="font-heading text-ink text-2xl md:text-[1.75rem] mt-4">
-                Local Expertise. Lasting Relationships.
-              </h2>
-              <p className="mt-4 text-base leading-relaxed max-w-md">
-                Ayala Accounting Co. is a Los Angeles-based firm dedicated to helping
-                individuals, entrepreneurs, and small businesses achieve financial clarity. We
-                combine personalized service with years of experience to provide practical
-                solutions you can trust.
-              </p>
-              <a
-                href="#about"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
-              >
-                Learn More About Us <span aria-hidden>→</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
         {/* Testimonials */}
-        <section id="testimonials" className="bg-cream-alt">
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">
-            <div className="flex items-end justify-between gap-4">
-              <div>
-                <Eyebrow>Kind Words</Eyebrow>
-                <h2 className="font-heading text-ink text-2xl md:text-[1.75rem] mt-4">
-                  Trusted by Business Owners Like You.
-                </h2>
+        <section id="testimonials" className="relative overflow-hidden bg-blush">
+          <Icon
+            svg={botanicalLeaf}
+            className="pointer-events-none select-none absolute -left-10 bottom-0 h-72 w-auto text-accent opacity-60 hidden md:block"
+          />
+          <div className="mx-auto max-w-3xl px-6 md:px-10 lg:px-16 py-16 md:py-20 text-center relative">
+            <Eyebrow align="center">What Our Clients Say</Eyebrow>
+            <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
+              Trusted by Business Owners Like You
+            </h2>
+
+            <div className="mt-10 flex items-center justify-center gap-4 md:gap-6">
+              <button
+                type="button"
+                aria-label="Previous testimonial"
+                className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0"
+              >
+                <Icon svg={arrowLeft} className="h-4 w-4" />
+              </button>
+
+              <div className="bg-cream rounded-2xl shadow-[0_10px_25px_-8px_rgba(43,36,32,0.12)] p-8 md:p-10 text-left w-full">
+                <Icon svg={quoteIcon} className="h-8 w-8 text-accent" />
+                <p className="mt-4 font-heading text-ink text-lg md:text-xl leading-relaxed">
+                  “Ayala Bookkeeping Co. has been a game changer for our business. They're
+                  professional, responsive, and truly care about our success.”
+                </p>
+                <p className="mt-6 text-sm font-semibold tracking-[0.1em] text-ink uppercase">
+                  Maria S.
+                </p>
+                <p className="text-xs font-medium tracking-[0.1em] text-body/60 uppercase">
+                  Small Business Owner
+                </p>
               </div>
-              <div className="hidden sm:flex items-center gap-3 shrink-0">
-                <button
-                  type="button"
-                  aria-label="Previous testimonial"
-                  className="h-10 w-10 rounded-full border border-hairline flex items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next testimonial"
-                  className="h-10 w-10 rounded-full border border-hairline flex items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors"
-                >
-                  ›
-                </button>
-              </div>
+
+              <button
+                type="button"
+                aria-label="Next testimonial"
+                className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0"
+              >
+                <Icon svg={arrowRight} className="h-4 w-4" />
+              </button>
             </div>
 
-            <div className="mt-10 bg-cream rounded-2xl shadow-[0_10px_25px_-8px_rgba(43,36,32,0.12)] p-8 md:p-10 max-w-2xl">
-              <img
-                src={quoteIcon}
-                alt=""
-                aria-hidden
-                className="h-8 w-8 opacity-80 mix-blend-multiply"
-              />
-              <p className="mt-4 font-heading text-ink text-lg md:text-xl leading-relaxed">
-                “Ayala Accounting Co. has been a game changer for our business. They're
-                professional, responsive, and truly care about our success.”
-              </p>
-              <p className="mt-6 text-sm font-semibold tracking-[0.1em] text-ink uppercase">
-                Maria S.
-              </p>
-              <p className="text-xs font-medium tracking-[0.1em] text-body/60 uppercase">
-                Small Business Owner
-              </p>
-            </div>
-
-            <div className="mt-6 flex items-center gap-2">
-              {[0, 1, 2, 3, 4].map((dot) => (
+            <div className="mt-8 flex items-center justify-center gap-2">
+              {[0, 1, 2, 3].map((dot) => (
                 <span
                   key={dot}
                   className={`h-2 rounded-full transition-all ${
-                    dot === 2 ? 'w-6 bg-accent' : 'w-2 bg-accent/30'
+                    dot === 0 ? 'w-6 bg-accent' : 'w-2 bg-accent/30'
                   }`}
                 />
               ))}
@@ -372,10 +316,8 @@ function App() {
         <section id="contact" className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             <div>
-              <Eyebrow>Let's Talk</Eyebrow>
-              <h2 className="font-heading text-ink text-2xl md:text-[1.75rem] mt-4">
-                A conversation, in <em className="text-accent italic">confidence</em>.
-              </h2>
+              <Eyebrow>Let's Work Together</Eyebrow>
+              <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">Get in Touch</h2>
               <p className="mt-4 text-base leading-relaxed max-w-sm">
                 Have questions or ready to get started? Send us a message and we'll get back to
                 you soon.
@@ -383,19 +325,28 @@ function App() {
 
               <div className="mt-8 space-y-4 text-sm">
                 <a
-                  href="mailto:hello@ayalaaccounting.co"
-                  className="flex items-center gap-3 text-ink hover:text-accent transition-colors"
+                  href="mailto:hello@ayalabookkeeping.co"
+                  className="flex items-center gap-4 text-ink hover:text-accent transition-colors"
                 >
-                  <span aria-hidden>✉</span> hello@ayalaaccounting.co
+                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
+                    <Icon svg={mailIcon} className="h-4 w-4" />
+                  </span>
+                  hello@ayalabookkeeping.co
                 </a>
                 <a
                   href="tel:+18185550123"
-                  className="flex items-center gap-3 text-ink hover:text-accent transition-colors"
+                  className="flex items-center gap-4 text-ink hover:text-accent transition-colors"
                 >
-                  <span aria-hidden>☎</span> (818) 555-0123
+                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
+                    <Icon svg={phoneIcon} className="h-4 w-4" />
+                  </span>
+                  (818) 555-0123
                 </a>
-                <p className="flex items-center gap-3 text-ink">
-                  <span aria-hidden>📍</span> Los Angeles, CA
+                <p className="flex items-center gap-4 text-ink">
+                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
+                    <Icon svg={locationIcon} className="h-4 w-4" />
+                  </span>
+                  Los Angeles, CA
                 </p>
               </div>
             </div>
