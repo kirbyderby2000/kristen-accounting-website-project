@@ -7,13 +7,12 @@ import iconBookkeeping from './assets/ayala-accounting-assets/icons/bookkeeping.
 import iconReporting from './assets/ayala-accounting-assets/icons/financial-reporting.svg?raw'
 import iconTax from './assets/ayala-accounting-assets/icons/tax-preparation.svg?raw'
 import iconBusiness from './assets/ayala-accounting-assets/icons/small-business.svg?raw'
-import quoteIcon from './assets/ayala-accounting-assets/icons/quote.svg?raw'
-import arrowLeft from './assets/ayala-accounting-assets/icons/arrow-left.svg?raw'
-import arrowRight from './assets/ayala-accounting-assets/icons/arrow-right.svg?raw'
-import botanicalLeaf from './assets/ayala-accounting-assets/icons/botanical-leaf.svg?raw'
 import mailIcon from './assets/ayala-accounting-assets/icons/mail.svg?raw'
 import phoneIcon from './assets/ayala-accounting-assets/icons/phone.svg?raw'
 import locationIcon from './assets/ayala-accounting-assets/icons/location.svg?raw'
+import { Icon } from './components/Icon'
+import { Eyebrow } from './components/Eyebrow'
+import { TestimonialsCarousel } from './components/TestimonialsCarousel'
 
 const navLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
 
@@ -41,44 +40,6 @@ const services = [
 ]
 
 const footerNavLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
-
-function Icon({ svg, className }: { svg: string; className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={`inline-flex shrink-0 [&>svg]:h-full [&>svg]:w-auto ${className ?? ''}`}
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  )
-}
-
-function Eyebrow({
-  children,
-  align = 'left',
-}: {
-  children: string
-  align?: 'left' | 'center'
-}) {
-  if (align === 'center') {
-    return (
-      <div className="flex items-center justify-center gap-3">
-        <span className="h-px w-8 bg-accent/50" />
-        <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
-          {children}
-        </span>
-        <span className="h-px w-8 bg-accent/50" />
-      </div>
-    )
-  }
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
-        {children}
-      </span>
-      <span className="h-px w-10 bg-accent/50" />
-    </div>
-  )
-}
 
 function App() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
@@ -256,61 +217,7 @@ function App() {
         </section>
 
         {/* Testimonials */}
-        <section id="testimonials" className="relative overflow-hidden bg-blush">
-          <Icon
-            svg={botanicalLeaf}
-            className="pointer-events-none select-none absolute -left-10 bottom-0 h-72 w-auto text-accent opacity-60 hidden md:block"
-          />
-          <div className="mx-auto max-w-3xl px-6 md:px-10 lg:px-16 py-16 md:py-20 text-center relative">
-            <Eyebrow align="center">What Our Clients Say</Eyebrow>
-            <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
-              Trusted by Business Owners Like You
-            </h2>
-
-            <div className="mt-10 flex items-center justify-center gap-4 md:gap-6">
-              <button
-                type="button"
-                aria-label="Previous testimonial"
-                className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0"
-              >
-                <Icon svg={arrowLeft} className="h-4 w-4" />
-              </button>
-
-              <div className="bg-cream rounded-2xl shadow-[0_10px_25px_-8px_rgba(43,36,32,0.12)] p-8 md:p-10 text-left w-full">
-                <Icon svg={quoteIcon} className="h-8 w-8 text-accent" />
-                <p className="mt-4 font-heading text-ink text-lg md:text-xl leading-relaxed">
-                  “Ayala Bookkeeping Co. has been a game changer for our business. They're
-                  professional, responsive, and truly care about our success.”
-                </p>
-                <p className="mt-6 text-sm font-semibold tracking-[0.1em] text-ink uppercase">
-                  Maria S.
-                </p>
-                <p className="text-xs font-medium tracking-[0.1em] text-body/60 uppercase">
-                  Small Business Owner
-                </p>
-              </div>
-
-              <button
-                type="button"
-                aria-label="Next testimonial"
-                className="hidden sm:flex h-10 w-10 rounded-full bg-cream/70 border border-hairline items-center justify-center text-ink hover:border-accent hover:text-accent transition-colors shrink-0"
-              >
-                <Icon svg={arrowRight} className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center gap-2">
-              {[0, 1, 2, 3].map((dot) => (
-                <span
-                  key={dot}
-                  className={`h-2 rounded-full transition-all ${
-                    dot === 0 ? 'w-6 bg-accent' : 'w-2 bg-accent/30'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+        <TestimonialsCarousel />
 
         {/* Contact */}
         <section id="contact" className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">

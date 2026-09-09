@@ -12,6 +12,11 @@ export const testimonial = defineType({
             validation: (Rule) => Rule.required().error('Client name is required.'),
         }),
         defineField({
+            name: 'company',
+            title: 'Company Name',
+            type: 'string',
+        }),
+        defineField({
             name: 'avatar',
             title: 'Client Avatar',
             type: 'image',
