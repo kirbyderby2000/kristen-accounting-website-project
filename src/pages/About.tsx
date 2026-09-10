@@ -5,6 +5,7 @@ import { Icon } from '../components/Icon'
 import { Eyebrow } from '../components/Eyebrow'
 import { LocationSection } from '../components/LocationSection'
 import { CtaSection } from '../components/CtaSection'
+import { PageHero } from '../components/PageHero'
 import heroImage from '../assets/ayala-accounting-assets/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 import kristenCoverShot from '../assets/kristen-cover-shot.png'
 import leafBg from '../assets/ayala-accounting-assets/images/leaf-bg-image.png'
@@ -102,40 +103,32 @@ export function About() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-cream-alt">
-          <div className="absolute inset-y-0 right-0 w-full sm:w-[70%] lg:w-[55%]">
-            <img
-              src={heroImage}
-              alt="A laptop, open notebook, coffee mug, and flowers on a wooden desk"
-              className="h-full w-full object-cover"
-            />
+        <PageHero
+          image={heroImage}
+          imageAlt="A laptop, open notebook, coffee mug, and flowers on a wooden desk"
+        >
+          <Eyebrow>Our Story</Eyebrow>
+          <h1 className="font-heading text-heading text-[2.25rem] sm:text-[2.75rem] lg:text-[3rem] leading-[1.12] tracking-tight mt-6">
+            Helping You Understand the Numbers Behind Your Business
+          </h1>
+          <p className="mt-6 text-base leading-relaxed max-w-md">
+            Running a business comes with enough to manage. Keeping your books organized and
+            understanding where you stand financially shouldn't add to the stress.
+          </p>
+          <p className="mt-4 text-base leading-relaxed max-w-md">
+            Ayala Bookkeeping Co. provides dependable, personalized bookkeeping support
+            designed to give individuals and small business owners clearer records, better
+            visibility, and greater confidence in their finances.
+          </p>
+          <div className="mt-8">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
+            >
+              Contact Us <span aria-hidden>→</span>
+            </Link>
           </div>
-          <div className="relative flex min-h-[380px] items-center pl-6 py-14 sm:min-h-[420px] md:pl-10 md:py-16 lg:min-h-[440px] lg:pl-16 xl:min-h-[480px]">
-            <div className="max-w-xl">
-              <Eyebrow>Our Story</Eyebrow>
-              <h1 className="font-heading text-heading text-[2.25rem] sm:text-[2.75rem] lg:text-[3rem] leading-[1.12] tracking-tight mt-6">
-                Helping You Understand the Numbers Behind Your Business
-              </h1>
-              <p className="mt-6 text-base leading-relaxed max-w-md">
-                Running a business comes with enough to manage. Keeping your books organized and
-                understanding where you stand financially shouldn't add to the stress.
-              </p>
-              <p className="mt-4 text-base leading-relaxed max-w-md">
-                Ayala Bookkeeping Co. provides dependable, personalized bookkeeping support
-                designed to give individuals and small business owners clearer records, better
-                visibility, and greater confidence in their finances.
-              </p>
-              <div className="mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
-                >
-                  Contact Us <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        </PageHero>
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 pt-8 text-right">
           <span className="text-[11px] font-semibold tracking-[0.25em] text-accent/70 uppercase">

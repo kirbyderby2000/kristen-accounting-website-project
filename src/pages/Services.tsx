@@ -3,6 +3,7 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Icon } from '../components/Icon'
 import { Eyebrow } from '../components/Eyebrow'
+import { PageHero } from '../components/PageHero'
 import heroImage from '../assets/ayala-accounting-assets/images/pexels-artempodrez-6779567.jpg'
 import deskImage from '../assets/ayala-accounting-assets/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 import reportsImage from '../assets/ayala-accounting-assets/images/pexels-artempodrez-6779567.jpg'
@@ -96,40 +97,32 @@ export function Services() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-cream-alt">
-          <div className="absolute inset-y-0 right-0 w-full sm:w-[70%] lg:w-[55%]">
-            <img
-              src={heroImage}
-              alt="Two professionals reviewing financial reports, charts, and a calculator at a desk"
-              className="h-full w-full object-cover"
-            />
+        <PageHero
+          image={heroImage}
+          imageAlt="Two professionals reviewing financial reports, charts, and a calculator at a desk"
+        >
+          <Eyebrow>Our Services</Eyebrow>
+          <h1 className="font-heading text-heading text-[2.5rem] sm:text-[3rem] lg:text-[3.25rem] leading-[1.08] tracking-tight mt-6">
+            Practical Support
+            <br />
+            for a <span className="italic">Brighter</span>
+            <br />
+            Tomorrow.
+          </h1>
+          <p className="mt-6 text-base leading-relaxed max-w-md">
+            From day-to-day bookkeeping to long-term planning support, we provide reliable,
+            personalized services to help individuals and small businesses stay organized and
+            confident with their finances.
+          </p>
+          <div className="mt-8">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
+            >
+              Schedule a Consultation <span aria-hidden>→</span>
+            </Link>
           </div>
-          <div className="relative flex min-h-[380px] items-center pl-6 py-14 sm:min-h-[420px] md:pl-10 md:py-16 lg:min-h-[440px] lg:pl-16 xl:min-h-[480px]">
-            <div className="max-w-xl">
-              <Eyebrow>Our Services</Eyebrow>
-              <h1 className="font-heading text-heading text-[2.5rem] sm:text-[3rem] lg:text-[3.25rem] leading-[1.08] tracking-tight mt-6">
-                Practical Support
-                <br />
-                for a <span className="italic">Brighter</span>
-                <br />
-                Tomorrow.
-              </h1>
-              <p className="mt-6 text-base leading-relaxed max-w-md">
-                From day-to-day bookkeeping to long-term planning support, we provide reliable,
-                personalized services to help individuals and small businesses stay organized and
-                confident with their finances.
-              </p>
-              <div className="mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
-                >
-                  Schedule a Consultation <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        </PageHero>
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 pt-8 text-right">
           <span className="text-[11px] font-semibold tracking-[0.25em] text-accent/70 uppercase">

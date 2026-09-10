@@ -15,6 +15,7 @@ import { TestimonialsCarousel } from './components/TestimonialsCarousel'
 import { LocationSection } from './components/LocationSection'
 import { CtaSection } from './components/CtaSection'
 import { ScrollToTop } from './components/ScrollToTop'
+import { PageHero } from './components/PageHero'
 
 const services = [
   {
@@ -46,50 +47,44 @@ function Home() {
 
       <main>
         {/* Hero */}
-        <section id="home" className="relative overflow-hidden">
-          <div className="h-64 w-full min-[640px]:h-80 min-[768px]:h-96 min-[1207px]:absolute min-[1207px]:inset-y-0 min-[1207px]:right-0 min-[1207px]:h-auto min-[1207px]:w-[60%]">
-            <img
-              src={heroImage}
-              alt="A mug reading Good Numbers, Brighter Days beside a stack of books on accounting, small business, and financial clarity"
-              className="h-full w-full object-cover object-center min-[1207px]:object-right"
-            />
-          </div>
-          <div className="absolute inset-0 hidden min-[1207px]:block bg-[linear-gradient(to_right,#fbf6f1_0%,#fbf6f1_38%,rgba(251,246,241,0)_58%)]" />
-          <div className="relative px-6 py-12 min-[640px]:px-10 min-[640px]:py-16 min-[1207px]:flex min-[1207px]:min-h-[480px] min-[1207px]:items-center min-[1207px]:px-0 min-[1207px]:pl-16 min-[1207px]:py-20 min-[1280px]:min-h-[560px]">
-            <div className="max-w-xl">
-              <div className="space-y-1">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
-                    Clear Numbers.
-                  </span>
-                  <span className="h-px w-10 bg-accent/50" />
-                </div>
-                <span className="block text-xs font-semibold tracking-[0.2em] text-accent uppercase">
-                  A Brighter Tomorrow.
-                </span>
-              </div>
-              <h1 className="font-heading text-heading text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] leading-[1.05] tracking-tight mt-6">
-                Bookkeeping
-                <br />
-                for a Stronger
-                <br />
-                Business
-              </h1>
-              <p className="mt-6 text-base leading-relaxed max-w-md">
-                We help small businesses and individuals stay organized, compliant, and
-                confident with their finances — so you can focus on what matters most.
-              </p>
-              <div className="mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
-                >
-                  Get in Touch <span aria-hidden>→</span>
-                </Link>
-              </div>
+        <PageHero
+          id="home"
+          size="primary"
+          gradient
+          image={heroImage}
+          imageAlt="A mug reading Good Numbers, Brighter Days beside a stack of books on accounting, small business, and financial clarity"
+        >
+          <div className="space-y-1">
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+                Clear Numbers.
+              </span>
+              <span className="h-px w-10 bg-accent/50" />
             </div>
+            <span className="block text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+              A Brighter Tomorrow.
+            </span>
           </div>
-        </section>
+          <h1 className="font-heading text-heading text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] leading-[1.05] tracking-tight mt-6">
+            Bookkeeping
+            <br />
+            for a Stronger
+            <br />
+            Business
+          </h1>
+          <p className="mt-6 text-base leading-relaxed max-w-md">
+            We help small businesses and individuals stay organized, compliant, and
+            confident with their finances — so you can focus on what matters most.
+          </p>
+          <div className="mt-8">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
+            >
+              Get in Touch <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </PageHero>
 
         <LocationSection />
 
