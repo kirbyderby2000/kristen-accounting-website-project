@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { Services } from './pages/Services'
 import { About } from './pages/About'
@@ -8,15 +7,13 @@ import iconBookkeeping from './assets/ayala-accounting-assets/icons/bookkeeping.
 import iconReporting from './assets/ayala-accounting-assets/icons/financial-reporting.svg?raw'
 import iconTax from './assets/ayala-accounting-assets/icons/tax-preparation.svg?raw'
 import iconBusiness from './assets/ayala-accounting-assets/icons/small-business.svg?raw'
-import mailIcon from './assets/ayala-accounting-assets/icons/mail.svg?raw'
-import phoneIcon from './assets/ayala-accounting-assets/icons/phone.svg?raw'
-import locationIcon from './assets/ayala-accounting-assets/icons/location.svg?raw'
 import { Icon } from './components/Icon'
 import { Eyebrow } from './components/Eyebrow'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { TestimonialsCarousel } from './components/TestimonialsCarousel'
 import { LocationSection } from './components/LocationSection'
+import { CtaSection } from './components/CtaSection'
 
 const services = [
   {
@@ -42,18 +39,6 @@ const services = [
 ]
 
 function Home() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-  }
-
   return (
     <div className="bg-cream text-body font-sans">
       <Header />
@@ -108,7 +93,7 @@ function Home() {
         <LocationSection />
 
         {/* Services */}
-        <section id="services" className="bg-cream-alt">
+        <section id="services" className="bg-cream">
           <div className="mx-auto max-w-5xl px-6 md:px-10 lg:px-16 py-16 md:py-20 text-center">
             <Eyebrow align="center">Our Services</Eyebrow>
             <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
@@ -142,91 +127,7 @@ function Home() {
         {/* Testimonials */}
         <TestimonialsCarousel />
 
-        {/* Contact */}
-        <section id="contact" className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-            <div>
-              <Eyebrow>Let's Work Together</Eyebrow>
-              <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">Get in Touch</h2>
-              <p className="mt-4 text-base leading-relaxed max-w-sm">
-                Have questions or ready to get started? Send us a message and we'll get back to
-                you soon.
-              </p>
-
-              <div className="mt-8 space-y-4 text-sm">
-                <a
-                  href="mailto:hello@ayalabookkeeping.co"
-                  className="flex items-center gap-4 text-ink hover:text-accent transition-colors"
-                >
-                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
-                    <Icon svg={mailIcon} className="h-4 w-4" />
-                  </span>
-                  hello@ayalabookkeeping.co
-                </a>
-                <a
-                  href="tel:+18185550123"
-                  className="flex items-center gap-4 text-ink hover:text-accent transition-colors"
-                >
-                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
-                    <Icon svg={phoneIcon} className="h-4 w-4" />
-                  </span>
-                  (818) 555-0123
-                </a>
-                <p className="flex items-center gap-4 text-ink">
-                  <span className="h-10 w-10 rounded-full bg-accent-soft flex items-center justify-center text-accent shrink-0">
-                    <Icon svg={locationIcon} className="h-4 w-4" />
-                  </span>
-                  Los Angeles, CA
-                </p>
-              </div>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border border-hairline bg-cream-alt/40 px-4 py-3 text-sm text-ink placeholder:text-body/60 focus:outline-none focus:border-accent"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handleChange}
-                  className="w-full rounded-lg border border-hairline bg-cream-alt/40 px-4 py-3 text-sm text-ink placeholder:text-body/60 focus:outline-none focus:border-accent"
-                />
-              </div>
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                value={form.subject}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-hairline bg-cream-alt/40 px-4 py-3 text-sm text-ink placeholder:text-body/60 focus:outline-none focus:border-accent"
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                rows={5}
-                value={form.message}
-                onChange={handleChange}
-                className="w-full rounded-lg border border-hairline bg-cream-alt/40 px-4 py-3 text-sm text-ink placeholder:text-body/60 focus:outline-none focus:border-accent resize-none"
-              />
-              <div className="flex justify-end">
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
-                >
-                  Send Message <span aria-hidden>→</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
+        <CtaSection background="cream-alt" />
       </main>
 
       <Footer />

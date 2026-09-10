@@ -4,10 +4,10 @@ import { Footer } from '../components/Footer'
 import { Icon } from '../components/Icon'
 import { Eyebrow } from '../components/Eyebrow'
 import { LocationSection } from '../components/LocationSection'
+import { CtaSection } from '../components/CtaSection'
 import heroImage from '../assets/ayala-accounting-assets/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 import kristenCoverShot from '../assets/kristen-cover-shot.png'
 import leafBg from '../assets/ayala-accounting-assets/images/leaf-bg-image.png'
-import botanicalLeaf from '../assets/ayala-accounting-assets/icons/botanical-leaf.svg?raw'
 
 const integrityIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M32 12v6"/>
@@ -144,8 +144,22 @@ export function About() {
         </div>
 
         {/* Clarity */}
-        <section className="bg-cream">
-          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-10 md:py-14">
+        <section className="relative overflow-hidden bg-cream">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-[10%] scale-x-[-1] w-[42%] md:w-[36%] aspect-[1230/1278] bg-accent opacity-[0.16] hidden md:block"
+            style={{
+              maskImage: `url(${leafBg})`,
+              maskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center',
+              WebkitMaskImage: `url(${leafBg})`,
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+            }}
+          />
+          <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-10 md:py-14">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div className="relative rounded-2xl overflow-hidden flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:h-full min-h-[280px] p-12">
                 <img
@@ -154,34 +168,26 @@ export function About() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="relative">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none select-none absolute -right-6 -top-14 w-56 md:w-72 text-accent hidden lg:block"
-                >
-                  <Icon svg={botanicalLeaf} className="w-full h-auto" />
-                </div>
-                <div className="relative">
-                  <Eyebrow>About Ayala Bookkeeping Co.</Eyebrow>
-                  <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
-                    Good Bookkeeping Should Give You Clarity
-                  </h2>
-                  <p className="mt-5 text-sm md:text-base leading-relaxed max-w-lg">
-                    Ayala Bookkeeping Co. was founded with a simple idea: that organized finances
-                    create more freedom.
-                  </p>
-                  <p className="mt-4 text-sm md:text-base leading-relaxed max-w-lg">
-                    We work with individuals, entrepreneurs, and small businesses to keep their
-                    financial records accurate, organized, and easy to understand. We take the
-                    time to learn about your goals, your challenges, and how you work so we can
-                    provide support that actually fits your needs.
-                  </p>
-                  <p className="mt-4 text-sm md:text-base leading-relaxed max-w-lg">
-                    Our goal is simple: to give you organized books, understandable financial
-                    information, and one less thing to worry about — so you can focus on what
-                    matters most.
-                  </p>
-                </div>
+              <div>
+                <Eyebrow>About Ayala Bookkeeping Co.</Eyebrow>
+                <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
+                  Good Bookkeeping Should Give You Clarity
+                </h2>
+                <p className="mt-5 text-sm md:text-base leading-relaxed max-w-lg">
+                  Ayala Bookkeeping Co. was founded with a simple idea: that organized finances
+                  create more freedom.
+                </p>
+                <p className="mt-4 text-sm md:text-base leading-relaxed max-w-lg">
+                  We work with individuals, entrepreneurs, and small businesses to keep their
+                  financial records accurate, organized, and easy to understand. We take the
+                  time to learn about your goals, your challenges, and how you work so we can
+                  provide support that actually fits your needs.
+                </p>
+                <p className="mt-4 text-sm md:text-base leading-relaxed max-w-lg">
+                  Our goal is simple: to give you organized books, understandable financial
+                  information, and one less thing to worry about — so you can focus on what
+                  matters most.
+                </p>
               </div>
             </div>
           </div>
@@ -279,41 +285,7 @@ export function About() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="relative overflow-hidden bg-blush">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-[15%] w-[36%] md:w-[26%] aspect-[1230/1278] bg-accent opacity-[0.18] hidden md:block"
-            style={{
-              maskImage: `url(${leafBg})`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center',
-              WebkitMaskImage: `url(${leafBg})`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-            }}
-          />
-          <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-14 md:py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-            <div>
-              <Eyebrow>Ready to Talk?</Eyebrow>
-              <h2 className="font-heading text-heading text-2xl md:text-3xl mt-4">
-                Let's Start a Conversation.
-              </h2>
-              <p className="mt-3 text-sm md:text-base leading-relaxed max-w-md">
-                Every business is different. Tell us a little about your goals and we'll be happy
-                to discuss how we can help.
-              </p>
-            </div>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5 shrink-0"
-            >
-              Contact Us <span aria-hidden>→</span>
-            </Link>
-          </div>
-        </section>
+        <CtaSection />
       </main>
 
       <Footer />
