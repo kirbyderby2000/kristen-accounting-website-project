@@ -2,9 +2,19 @@ import { Link } from 'react-router-dom'
 import { Eyebrow } from './Eyebrow'
 import leafBg from '../assets/ayala-accounting-assets/images/leaf-bg-image.png'
 
-export function CtaSection() {
+const backgroundClasses = {
+  blush: 'bg-blush',
+  cream: 'bg-cream',
+  'cream-alt': 'bg-cream-alt',
+} as const
+
+type CtaSectionProps = {
+  background?: keyof typeof backgroundClasses
+}
+
+export function CtaSection({ background = 'blush' }: CtaSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-blush">
+    <section className={`relative overflow-hidden ${backgroundClasses[background]}`}>
       <div
         aria-hidden="true"
         className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-[15%] w-[36%] md:w-[26%] aspect-[1230/1278] bg-accent opacity-[0.18] hidden md:block"

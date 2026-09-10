@@ -93,7 +93,7 @@ function Home() {
         <LocationSection />
 
         {/* Services */}
-        <section id="services" className="bg-cream-alt">
+        <section id="services" className="bg-cream">
           <div className="mx-auto max-w-5xl px-6 md:px-10 lg:px-16 py-16 md:py-20 text-center">
             <Eyebrow align="center">Our Services</Eyebrow>
             <h2 className="font-heading text-heading text-3xl md:text-4xl mt-4">
@@ -127,7 +127,7 @@ function Home() {
         {/* Testimonials */}
         <TestimonialsCarousel />
 
-        <CtaSection />
+        <CtaSection background="cream-alt" />
       </main>
 
       <Footer />
