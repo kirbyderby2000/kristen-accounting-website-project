@@ -18,8 +18,8 @@ Portfolio site for an accountant (the developer's wife).
 ## Hosting & Deployment
 
 - Built and hosted as a static site on GitHub Pages, served from `dist/`.
-- GitHub Actions will build the app and deploy `dist/` to Pages on updates to the repo (CI workflow not yet implemented).
-- Custom domain: TBD.
+- `.github/workflows/deploy.yml` builds the app and deploys `dist/` to Pages via `actions/deploy-pages` on every push to `separate-pages` (temporary — switch the workflow's branch trigger to `main` once this becomes the long-term deploy branch). Requires the repo's Settings → Pages → Source to be set to "GitHub Actions" (one-time manual step).
+- No custom domain yet, so this is a GitHub project page served from a `/kristen-accounting-website-project/` subpath — see the `base` in `vite.config.ts`, the `basename` on `BrowserRouter` in `src/main.tsx`, and the `public/404.html` SPA-redirect fallback (all three need updating together if a custom domain or root `username.github.io` page is set up later, since that changes the base path to `/`).
 
 ## Project Structure
 
@@ -39,7 +39,6 @@ These are planned but intentionally out of scope until called for — don't buil
 - **Sanity CMS**: will eventually provide data hosting/management so the client (the accountant) can edit content herself under her own Sanity account. Not wired up until the static site is built out as needed. Ignore the Sanity Studio project in `/studio` for now.
 - **Contact form (Formspree)**: the contact form UI exists in `App.tsx` (`#contact` section) but `handleSubmit` is a stub — it doesn't actually submit anywhere yet. Will eventually POST via Formspree.
 - **Cloudflare Turnstile**: will protect the contact form once implemented, but not until further notice.
-- **CI/CD workflow**: no GitHub Actions workflow exists yet for build/deploy — needs to be added when automating Pages deployment.
 
 ## Tooling Notes
 
