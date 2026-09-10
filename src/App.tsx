@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import logo from './assets/ayala-accounting-assets/images/ayala-logo-reference.png'
-import footerLogo from './assets/ayala-accounting-assets/images/logo-reference-horizontal-layout.png'
+import { Routes, Route, Link } from 'react-router-dom'
+import { Services } from './pages/Services'
+import { About } from './pages/About'
+import { Contact } from './pages/Contact'
 import heroImage from './assets/ayala-accounting-assets/images/hero-accounting-desk.png'
-import footerLeaf from './assets/footer-leaf-transparent.png'
 import iconBookkeeping from './assets/ayala-accounting-assets/icons/bookkeeping.svg?raw'
 import iconReporting from './assets/ayala-accounting-assets/icons/financial-reporting.svg?raw'
 import iconTax from './assets/ayala-accounting-assets/icons/tax-preparation.svg?raw'
@@ -12,9 +13,9 @@ import phoneIcon from './assets/ayala-accounting-assets/icons/phone.svg?raw'
 import locationIcon from './assets/ayala-accounting-assets/icons/location.svg?raw'
 import { Icon } from './components/Icon'
 import { Eyebrow } from './components/Eyebrow'
+import { Header } from './components/Header'
+import { Footer } from './components/Footer'
 import { TestimonialsCarousel } from './components/TestimonialsCarousel'
-
-const navLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
 
 const services = [
   {
@@ -39,11 +40,8 @@ const services = [
   },
 ]
 
-const footerNavLinks = ['Home', 'Services', 'About', 'Testimonials', 'Contact']
-
-function App() {
+function Home() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -57,85 +55,7 @@ function App() {
 
   return (
     <div className="bg-cream text-body font-sans">
-      {/* Header / Nav */}
-      <header className="border-b border-hairline">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-4 flex items-center justify-between gap-6">
-          <a href="#home" className="flex items-center gap-3 shrink-0">
-            <img src={logo} alt="Ayala Bookkeeping Co." className="h-9 md:h-11 w-auto" />
-          </a>
-
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className={`text-sm font-medium text-ink hover:text-accent transition-colors ${
-                  link === 'Home' ? 'border-b-2 border-accent pb-1' : ''
-                }`}
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="#contact"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-5 py-2.5"
-            >
-              Get in Touch <span aria-hidden>→</span>
-            </a>
-            <button
-              type="button"
-              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
-              onClick={() => setMobileMenuOpen((open) => !open)}
-              className="lg:hidden flex flex-col gap-1.5 p-2"
-            >
-              <span
-                className={`block h-0.5 w-6 bg-ink transition-transform ${
-                  mobileMenuOpen ? 'translate-y-2 rotate-45' : ''
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 bg-ink transition-opacity ${
-                  mobileMenuOpen ? 'opacity-0' : ''
-                }`}
-              />
-              <span
-                className={`block h-0.5 w-6 bg-ink transition-transform ${
-                  mobileMenuOpen ? '-translate-y-2 -rotate-45' : ''
-                }`}
-              />
-            </button>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <nav id="mobile-menu" className="lg:hidden border-t border-hairline bg-cream">
-            <div className="px-6 md:px-10 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-medium text-ink hover:text-accent transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-5 py-2.5 mt-2"
-              >
-                Get in Touch <span aria-hidden>→</span>
-              </a>
-            </div>
-          </nav>
-        )}
-      </header>
+      <Header />
 
       <main>
         {/* Hero */}
@@ -173,12 +93,12 @@ function App() {
                 confident with their finances — so you can focus on what matters most.
               </p>
               <div className="mt-8">
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors text-cream text-sm font-semibold px-6 py-3.5"
                 >
                   Get in Touch <span aria-hidden>→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -306,88 +226,19 @@ function App() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="relative overflow-hidden text-cream bg-footer">
-        <div className="relative">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-[10%] w-[26%] md:w-[22%] aspect-[1740/904] bg-cream opacity-[0.16] hidden md:block"
-            style={{
-              maskImage: `url(${footerLeaf})`,
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center',
-              WebkitMaskImage: `url(${footerLeaf})`,
-              WebkitMaskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
-            }}
-          />
-
-          <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-16">
-            <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-10">
-              <div>
-                <img src={footerLogo} alt="Ayala Bookkeeping Co." className="h-10 w-auto" />
-                <p className="font-heading italic text-lg text-cream/80 mt-6 leading-snug">
-                  Clear Numbers.
-                  <br />
-                  Brighter Tomorrows.
-                </p>
-              </div>
-
-              <div>
-                <ul className="space-y-3">
-                  {footerNavLinks.map((link) => (
-                    <li key={link}>
-                      <a
-                        href={`#${link.toLowerCase()}`}
-                        className="text-sm text-cream/70 hover:text-cream transition-colors"
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold text-cream mb-4">Contact</h3>
-                <ul className="space-y-3 text-sm text-cream/70">
-                  <li className="flex items-center gap-2">
-                    <Icon svg={phoneIcon} className="h-3.5 w-3.5 text-accent" /> (818) 555-0123
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Icon svg={mailIcon} className="h-3.5 w-3.5 text-accent" /> hello@ayalaaccounting.co
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Icon svg={locationIcon} className="h-3.5 w-3.5 text-accent" /> Los Angeles, CA
-                  </li>
-                </ul>
-              </div>
-
-              <div className="flex items-center md:justify-end">
-                <span className="text-[11px] font-semibold tracking-[0.25em] text-cream/50 uppercase">
-                  People / Plans / Progress
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-12 pt-6 border-t border-cream/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/60">
-              <p>© 2026 Ayala Accounting Co. All rights reserved.</p>
-              <p>
-                <a href="#" className="hover:text-cream transition-colors">
-                  Privacy Policy
-                </a>{' '}
-                |{' '}
-                <a href="#" className="hover:text-cream transition-colors">
-                  Terms of Service
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
   )
 }
 
