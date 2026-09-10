@@ -4,7 +4,7 @@ import { Footer } from '../components/Footer'
 import { Icon } from '../components/Icon'
 import { Eyebrow } from '../components/Eyebrow'
 import heroImage from '../assets/ayala-accounting-assets/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
-import logoPlaceholder from '../assets/ayala-accounting-assets/images/logo-reference-horizontal-layout.png'
+import kristenCoverShot from '../assets/kristen-cover-shot.png'
 import leafBg from '../assets/ayala-accounting-assets/images/leaf-bg-image.png'
 import botanicalLeaf from '../assets/ayala-accounting-assets/icons/botanical-leaf.svg?raw'
 
@@ -146,11 +146,11 @@ export function About() {
         <section className="bg-cream">
           <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-16 py-10 md:py-14">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              <div className="relative rounded-2xl overflow-hidden bg-accent-soft flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:h-full min-h-[280px] p-12">
+              <div className="relative rounded-2xl overflow-hidden flex items-center justify-center aspect-[4/3] lg:aspect-auto lg:h-full min-h-[280px] p-12">
                 <img
-                  src={logoPlaceholder}
-                  alt="Ayala Bookkeeping Co."
-                  className="w-full max-w-[220px]"
+                  src={kristenCoverShot}
+                  alt="Kristen Ayala"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="relative">
