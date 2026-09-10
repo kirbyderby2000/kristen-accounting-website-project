@@ -18,7 +18,7 @@ Portfolio site for an accountant (the developer's wife).
 ## Hosting & Deployment
 
 - Built and hosted as a static site on GitHub Pages, served from `dist/`.
-- `.github/workflows/deploy.yml` builds the app and deploys `dist/` to Pages via `actions/deploy-pages` on every push to `separate-pages` (temporary — switch the workflow's branch trigger to `main` once this becomes the long-term deploy branch). Requires the repo's Settings → Pages → Source to be set to "GitHub Actions" (one-time manual step).
+- `.github/workflows/deploy.yml` builds the app and deploys `dist/` to Pages via `actions/deploy-pages` on every push to a dedicated `builds` branch — push/merge into `builds` whenever the current state should go live for client review, independent of what's in progress on `separate-pages`/`dev`/`main`. Requires the repo's Settings → Pages → Source to be set to "GitHub Actions" (one-time manual step).
 - No custom domain yet, so this is a GitHub project page served from a `/kristen-accounting-website-project/` subpath — see the `base` in `vite.config.ts`, the `basename` on `BrowserRouter` in `src/main.tsx`, and the `public/404.html` SPA-redirect fallback (all three need updating together if a custom domain or root `username.github.io` page is set up later, since that changes the base path to `/`).
 
 ## Project Structure

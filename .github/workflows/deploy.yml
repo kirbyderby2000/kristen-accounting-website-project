@@ -2,9 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    # TODO: switch this to `main` once separate-pages is merged and this
-    # becomes the long-term deploy branch.
-    branches: [separate-pages]
+    # Deploys only fire on pushes to `builds` — merge/push into that branch
+    # whenever you want the current state live for client review, decoupled
+    # from whatever's in progress on separate-pages/dev/main.
+    branches: [builds]
   workflow_dispatch:
 
 permissions:
