@@ -16,6 +16,7 @@ import { Eyebrow } from './components/Eyebrow'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { TestimonialsCarousel } from './components/TestimonialsCarousel'
+import { LocationSection } from './components/LocationSection'
 
 const services = [
   {
@@ -103,6 +104,8 @@ function Home() {
             </div>
           </div>
         </section>
+
+        <LocationSection />
 
         {/* Services */}
         <section id="services" className="bg-cream-alt">
