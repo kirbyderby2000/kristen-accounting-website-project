@@ -3,6 +3,7 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { Icon } from '../components/Icon'
 import { Eyebrow } from '../components/Eyebrow'
+import { LocationSection } from '../components/LocationSection'
 import heroImage from '../assets/ayala-accounting-assets/images/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg'
 import kristenCoverShot from '../assets/kristen-cover-shot.png'
 import leafBg from '../assets/ayala-accounting-assets/images/leaf-bg-image.png'
@@ -243,6 +244,8 @@ export function About() {
             </div>
           </div>
         </section>
+
+        <LocationSection />
 
         {/* Getting Started */}
         <section className="bg-cream">
