@@ -47,15 +47,15 @@ function Home() {
       <main>
         {/* Hero */}
         <section id="home" className="relative overflow-hidden">
-          <div className="absolute inset-y-0 right-0 w-full sm:w-[75%] lg:w-[60%]">
+          <div className="h-64 w-full min-[640px]:h-80 min-[768px]:h-96 min-[1207px]:absolute min-[1207px]:inset-y-0 min-[1207px]:right-0 min-[1207px]:h-auto min-[1207px]:w-[60%]">
             <img
               src={heroImage}
               alt="A mug reading Good Numbers, Brighter Days beside a stack of books on accounting, small business, and financial clarity"
-              className="h-full w-full object-cover object-right"
+              className="h-full w-full object-cover object-center min-[1207px]:object-right"
             />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#fbf6f1_0%,#fbf6f1_38%,rgba(251,246,241,0)_58%)]" />
-          <div className="relative flex min-h-[400px] items-center pl-6 py-16 sm:min-h-[460px] md:pl-10 md:py-20 lg:min-h-[480px] lg:pl-16 xl:min-h-[560px]">
+          <div className="absolute inset-0 hidden min-[1207px]:block bg-[linear-gradient(to_right,#fbf6f1_0%,#fbf6f1_38%,rgba(251,246,241,0)_58%)]" />
+          <div className="relative px-6 py-12 min-[640px]:px-10 min-[640px]:py-16 min-[1207px]:flex min-[1207px]:min-h-[480px] min-[1207px]:items-center min-[1207px]:px-0 min-[1207px]:pl-16 min-[1207px]:py-20 min-[1280px]:min-h-[560px]">
             <div className="max-w-xl">
               <div className="space-y-1">
                 <div className="flex items-center gap-3">
