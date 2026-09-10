@@ -14,6 +14,7 @@ import { Footer } from './components/Footer'
 import { TestimonialsCarousel } from './components/TestimonialsCarousel'
 import { LocationSection } from './components/LocationSection'
 import { CtaSection } from './components/CtaSection'
+import { ScrollToTop } from './components/ScrollToTop'
 
 const services = [
   {
@@ -137,12 +138,15 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   )
 }
 
